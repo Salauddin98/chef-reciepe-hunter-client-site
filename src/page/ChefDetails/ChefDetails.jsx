@@ -1,12 +1,18 @@
 import React from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigation } from "react-router-dom";
 import Recipes from "../Recipes/Recipes";
+import Loading from "../../Loading/Loading";
 
 const ChefDetails = () => {
   const chefDetails = useLoaderData();
   const { id, name, picture, likes, experience, recipes, description } =
     chefDetails;
-  console.log(recipes);
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
+
+  // console.log(recipes);
   return (
     <section className="bg-[url('image/pattern-home.jpg')] bg-no-repeat">
       <h1 className="text-center text-4xl font-bold py-8">

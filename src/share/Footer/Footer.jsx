@@ -10,8 +10,8 @@ const Footer = () => {
             CHEFHERO
           </h1>
           <p className="text-zinc-500 mb-6">
-            There are many variations of passages of Lorem Ipsum , but the
-            majority have suffered alteration in some form.
+            A food web consists of all the food chains in a single ecosystem.
+            Each living thing in an ecosystem is part of multiple food chains.
           </p>
           <img className="cursor-pointer" src={icon} alt="" />
         </div>
@@ -22,7 +22,7 @@ const Footer = () => {
           <ul className="text-zinc-500 leading-7">
             <li>About Us</li>
             <li>Works</li>
-            <li>Latest News</li>
+            <li>Latest Chef</li>
             <li>Careers</li>
           </ul>
         </div>

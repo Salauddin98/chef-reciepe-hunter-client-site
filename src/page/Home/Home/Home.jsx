@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <>
       <section className=" bg-[url('image/team.jpg')] bg-no-repeat bg-center bg-cover bg-opacity-10">
-        <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 ">
+        <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-10 lg:px-8 ">
           <div className="carousel w-full">
             <div id="slide1" className="carousel-item relative w-full">
               <div className="w-full h-[400px] bg-[url('image/burger.jpg')] bg-no-repeat bg-center bg-cover flex flex-col items-center justify-center text-center rounded-md bg-opacity-80">
@@ -106,7 +106,7 @@ const Home = () => {
           OUR CHEF
           <hr className="w-24 mt-2 border-[3px] mx-auto border-orange-500" />
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-10 lg:px-8 gap-10">
           {chefData.map((chef) => (
             <Chef key={chef.id} chef={chef}></Chef>
           ))}

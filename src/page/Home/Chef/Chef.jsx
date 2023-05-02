@@ -1,8 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigation } from "react-router-dom";
+import Loading from "../../../Loading/Loading";
 
 const Chef = ({ chef }) => {
   const { id, name, picture, likes, experience, recipes } = chef;
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
   return (
     <div className="card card-compact w-96 bg-base-100 shadow-xl">
       <figure>

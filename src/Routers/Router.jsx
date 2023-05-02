@@ -4,11 +4,13 @@ import { Children } from "react";
 import Home from "../page/Home/Home/Home";
 import Blog from "../page/Blog/Blog";
 import ChefDetails from "../page/ChefDetails/ChefDetails";
+import ErrorPage from "../page/Error/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
