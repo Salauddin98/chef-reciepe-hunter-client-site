@@ -1,23 +1,24 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import Recipes from "../Recipes/Recipes";
 
 const ChefDetails = () => {
   const chefDetails = useLoaderData();
   const { id, name, picture, likes, experience, recipes, description } =
     chefDetails;
-  console.log(chefDetails);
+  console.log(recipes);
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 gap-10 mt-10">
       <div className="card lg:card-side bg-base-100 shadow-xl">
-        <figure>
+        <figure className="w-full lg:w-2/5">
           <img className="rounded-md" src={picture} alt="Album" />
         </figure>
-        <div className="card-body text-center">
-          <h2 className=" text-2xl font-bold ">{name}</h2>
-          <p className=" text-base font-medium text-slate-400 w-3/5 mx-auto">
+        <div className="p-6 flex flex-col justify-center items-center text-center w-full lg:w-3/5 space-y-3">
+          <h2 className=" text-4xl font-bold title-text">{name}</h2>
+          <p className=" text-base font-medium text-slate-400 w-full lg:w-4/5 mx-auto">
             {description}
           </p>
-          <p className="text-base text-slate-500 font-medium">
+          <p className="text-lg text-slate-500 font-bold">
             {experience} Year's Experience
           </p>
           <div className="flex items-center justify-center text-center gap-2">
@@ -41,7 +42,16 @@ const ChefDetails = () => {
               {likes}
             </span>
           </div>
+          <Link to="/">
+            {" "}
+            <button className="btn btn-outline">Back To Home</button>
+          </Link>
         </div>
+      </div>
+      <div className="grid mt-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {recipes.map((menu, index) => (
+          <Recipes menu={menu} key={index}></Recipes>
+        ))}
       </div>
     </div>
   );
