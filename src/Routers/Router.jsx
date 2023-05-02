@@ -3,14 +3,25 @@ import App from "../App";
 import { Children } from "react";
 import Home from "../page/Home/Home/Home";
 import Blog from "../page/Blog/Blog";
+import ChefDetails from "../page/ChefDetails/ChefDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
     children: [
-      { path: "/", element: <Home></Home> },
+      {
+        path: "/",
+        element: <Home></Home>,
+        loader: () => fetch("http://localhost:5000/chef"),
+      },
       { path: "/blog", element: <Blog></Blog> },
+      {
+        path: "/chef/:id",
+        element: <ChefDetails></ChefDetails>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/chef/${params.id}`),
+      },
     ],
   },
 ]);
