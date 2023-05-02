@@ -52,7 +52,7 @@ const Recipes = ({ menu }) => {
             <span>{ratings}</span>
           </div>
           <div>
-            <button onClick={() => addLoveItem(setLove(!true))}>
+            <button onClick={() => addLoveItem(setLove(!love))} disabled={love}>
               <FaBookmark className="text-2xl cursor-pointer"></FaBookmark>
             </button>
           </div>
