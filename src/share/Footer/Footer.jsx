@@ -4,7 +4,7 @@ import icon from "../../image/Group 9969.png";
 const Footer = () => {
   return (
     <footer>
-      <div className="grid md:grid-cols-3 lg:grid-cols-5 bg-black p-12 gap-5">
+      <div className="grid md:grid-cols-3 lg:grid-cols-5 bg-black p-12 gap-5 mt-10">
         <div>
           <h1 className="text-3xl font-bold text-white mb-4 title-text -mt-2">
             CHEFHERO

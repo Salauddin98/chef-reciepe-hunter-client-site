@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import food1 from "../../../image/food1.jpg";
 import { useLoaderData } from "react-router-dom";
 import Chef from "../Chef/Chef";
+import RecipeCategory from "../RecipeCategory/RecipeCategory";
+import LatestRecipe from "../LatestRecipe/LatestRecipe";
 
 const Home = () => {
   const chefData = useLoaderData();
-  console.log(chefData);
+  // console.log(chefData);
+  const [showAll, setShowAll] = useState(false);
   return (
     <>
       <section className=" bg-[url('image/team.jpg')] bg-no-repeat bg-center bg-cover bg-opacity-10">
@@ -101,7 +104,14 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="bg-[url('image/pattern-home.jpg')] bg-no-repeat   mt-10">
+      <section className="mt-10">
+        <h1 className="text-center text-4xl font-bold py-8">
+          Recipe Categories
+          <hr className="w-24 mt-2 border-[3px] mx-auto border-orange-500" />
+        </h1>
+        <RecipeCategory></RecipeCategory>
+      </section>
+      <section className="bg-[url('image/pattern-home.jpg')] bg-no-repeat mt-10">
         <h1 className="text-center text-4xl font-bold py-8">
           OUR CHEF
           <hr className="w-24 mt-2 border-[3px] mx-auto border-orange-500" />
@@ -111,6 +121,28 @@ const Home = () => {
             <Chef key={chef.id} chef={chef}></Chef>
           ))}
         </div>
+      </section>
+
+      <section className="bg-[url('image/pattern-home.jpg')] bg-no-repeat mt-10">
+        <h1 className="text-center text-4xl font-bold py-8">
+          OUR LATEST RECIPES
+          <hr className="w-24 mt-2 border-[3px] mx-auto border-orange-500" />
+        </h1>
+        <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-10 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {chefData.slice(0, showAll ? 6 : 2).map((chef) => (
+            <LatestRecipe key={chef.id} chef={chef}></LatestRecipe>
+          ))}
+        </div>
+        {!showAll && (
+          <div className="text-center">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="btn btn-outline"
+            >
+              Show All
+            </button>
+          </div>
+        )}
       </section>
     </>
   );

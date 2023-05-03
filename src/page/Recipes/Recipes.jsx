@@ -54,8 +54,7 @@ const Recipes = ({ menu }) => {
           <div>
             {love ? (
               <button
-                // onClick={() => addLoveItem(setLove(!love))}
-                onClick={addLoveItem}
+                onClick={() => addLoveItem(setLove(!love))}
                 disabled={love}
               >
                 <FaBookmark className="text-2xl cursor-pointer"></FaBookmark>
