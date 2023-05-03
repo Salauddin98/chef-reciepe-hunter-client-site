@@ -1,16 +1,41 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 const SignUp = () => {
   const [PasswordShow, setPasswordShow] = useState(true);
+  const { createUser } = useContext(AuthContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    createUser(email, password);
+  };
+  const handleEmail = (e) => {
+    const emailInput = e.target.value;
+    setEmail(emailInput);
+  };
+  const handlePassword = (e) => {
+    const passwordInput = e.target.value;
+    setPassword(passwordInput);
+  };
+  const handleConfirmPassword = (e) => {
+    const confirmPasswordInput = e.target.value;
+    setConfirmPassword(confirmPasswordInput);
+  };
   return (
     <section className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-10 lg:px-8 gap-10 flex flex-col items-center justify-center">
       <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100 bg-[#111827]">
         <h1 className="text-2xl font-bold text-center text-gray-300">
           Sign Up
         </h1>
-        <form action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
+        <form
+          onSubmit={handleSubmitForm}
+          action=""
+          className="space-y-6 ng-untouched ng-pristine ng-valid"
+        >
           <div className="space-y-1 text-sm">
             <label htmlFor="email" className="block text-gray-400">
               Email
@@ -19,6 +44,8 @@ const SignUp = () => {
               type="email"
               name="email"
               id="email"
+              value={email}
+              onChange={handleEmail}
               placeholder="Enter Your Email"
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
               required
@@ -32,6 +59,8 @@ const SignUp = () => {
               type={PasswordShow ? "password" : "text"}
               name="password"
               id="password"
+              value={password}
+              onChange={handlePassword}
               placeholder="Password"
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
               required
@@ -56,6 +85,8 @@ const SignUp = () => {
               type={PasswordShow ? "password" : "text"}
               name="confirmPassword"
               id="confirmPassword"
+              value={confirmPassword}
+              onChange={handleConfirmPassword}
               placeholder="Confirm Password"
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
               required
