@@ -53,8 +53,12 @@ const Nav = () => {
             </li>
 
             <li>
-              <button className="btn btn-outline mr-3">LogIn</button>
-              <button className="btn btn-outline">SignUp</button>
+              <Link to="/login">
+                <button className="btn btn-outline mr-3">LogIn</button>
+              </Link>
+              <Link to="/register">
+                <button className="btn btn-outline">SignUp</button>
+              </Link>
             </li>
           </ul>
 

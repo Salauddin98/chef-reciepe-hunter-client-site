@@ -139,7 +139,7 @@ const Home = () => {
               onClick={() => setShowAll(!showAll)}
               className="btn btn-outline"
             >
-              Show All
+              Show More
             </button>
           </div>
         )}

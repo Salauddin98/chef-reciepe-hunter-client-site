@@ -5,6 +5,8 @@ import Home from "../page/Home/Home/Home";
 import Blog from "../page/Blog/Blog";
 import ChefDetails from "../page/ChefDetails/ChefDetails";
 import ErrorPage from "../page/Error/ErrorPage";
+import Login from "../Account/Login/Login";
+import SignUp from "../Account/SignUp/SignUp";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,8 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/chef/${params.id}`),
       },
+      { path: "/login", element: <Login></Login> },
+      { path: "/register", element: <SignUp></SignUp> },
     ],
   },
 ]);
