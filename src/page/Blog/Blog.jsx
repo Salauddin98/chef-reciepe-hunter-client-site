@@ -1,9 +1,26 @@
 import React from "react";
+import ReactDOM from "react-dom";
+import Pdf from "react-to-pdf";
+const ref = React.createRef();
 import image from "../../image/faq.png";
 
 const Blog = () => {
   return (
     <section class="container mx-auto px-10 mt-10 md:mt-32 lg:mt-16 mb-8">
+      <div>
+        <Pdf targetRef={ref} filename="code-example.pdf">
+          {({ toPdf }) => (
+            <button className="btn btn-outline btn-secondary" onClick={toPdf}>
+              Generate Pdf
+            </button>
+          )}
+        </Pdf>
+        <div ref={ref}>
+          <h1> Differences between uncontrolled and controlled components.</h1>
+          <h2>Start editing to see some magic happen!</h2>
+        </div>
+      </div>
+
       <div className="flex flex-col md:flex-row gap-10 justify-between items-center mt">
         <div className="flex flex-col gap-6  lg:px-0 w-full lg:w-[50%] mx-auto">
           <div
@@ -173,5 +190,6 @@ const Blog = () => {
     </section>
   );
 };
-
+const rootElement = document.getElementById("root");
+ReactDOM.render(<Blog />, rootElement);
 export default Blog;

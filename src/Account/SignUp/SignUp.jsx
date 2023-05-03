@@ -1,18 +1,20 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { toast } from "react-hot-toast";
 
 const SignUp = () => {
   const [PasswordShow, setPasswordShow] = useState(true);
-  const { createUser, setUser } = useContext(AuthContext);
+  const { createUser, setUser, GetProfile } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [photo, setPhoto] = useState("");
+  const [name, setName] = useState("");
+  const navigation = useNavigate();
   const handleSubmitForm = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -41,11 +43,21 @@ const SignUp = () => {
         setEmail("");
         setPassword("");
         setConfirmPassword("");
+        setPhoto("");
+        form.reset();
+        navigation("/login");
         toast.success("SignUp Successfully");
+        GetProfile(result.user, name, photo)
+          .then(() => {
+            console.log("done");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((error) => {
-        // setError(error.message);
-        // if (passwordError === "Firebase: Error (auth/email-already-in-use).") {
+        // // setError(error.message);
+        // if (passwordError === error.message) {
         //   setPasswordError("Email already in use");
         // }
         setPasswordError(error.message);
@@ -65,8 +77,12 @@ const SignUp = () => {
     setConfirmPassword(confirmPasswordInput);
   };
   const handleURL = (e) => {
-    const confirmPasswordInput = e.target.value;
-    setConfirmPassword(confirmPasswordInput);
+    const image = e.target.value;
+    setPhoto(image);
+  };
+  const handleName = (e) => {
+    const name = e.target.value;
+    setName(name);
   };
 
   return (
@@ -76,6 +92,21 @@ const SignUp = () => {
           Sign Up
         </h1>
         <form onSubmit={handleSubmitForm} action="" className="space-y-6 ">
+          <div className="space-y-1 text-sm">
+            <label htmlFor="name" className="block text-gray-400">
+              Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={name}
+              onChange={handleName}
+              placeholder="Enter Your Email"
+              className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
+              // required
+            />
+          </div>
           <div className="space-y-1 text-sm">
             <label htmlFor="email" className="block text-gray-400">
               Email
@@ -155,7 +186,7 @@ const SignUp = () => {
               onChange={handleURL}
               placeholder="Enter Your Email"
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
-              required
+              // required
             />
           </div>
           <div className="mt-6 text-center">

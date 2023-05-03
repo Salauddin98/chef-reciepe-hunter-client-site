@@ -1,28 +1,59 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { toast } from "react-hot-toast";
 
 const Login = () => {
   const [PasswordShow, setPasswordShow] = useState(true);
-  const { googleSignIn, setUser, githubSingIn } = useContext(AuthContext);
+  const { googleSignIn, setUser, githubSingIn, loginUser } =
+    useContext(AuthContext);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
 
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+
+    loginUser(email, password)
+      .then((result) => {
+        const loggedInfo = result.user;
+        // console.log(loggedInfo)
+
+        navigate(from, { replace: true });
+        setEmail("");
+        setPassword("");
+        toast.success("Login Successfully");
+        setError("");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
         const loggedInUser = result.user;
-        console.log(loggedInUser);
+        // console.log(loggedInUser);
         // navigate(from, { replace: true });
         setUser(loggedInUser);
         // setSuccess("Log in Successfully");
         toast.success("Account Create Successfully");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
-        // setError(error.message);
-        toast.error(error.message);
+        setError(error.message);
+        // toast.error(error.message);
       });
   };
 
@@ -35,10 +66,10 @@ const Login = () => {
         setUser(loggedInUser);
         // setSuccess("Log in Successfully");
         toast.success("Account Create Successfully");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
-        // setError(error.message);
-        toast.error(error.message);
+        setError(error.message);
       });
   };
 
@@ -46,17 +77,24 @@ const Login = () => {
     <section className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-10 lg:px-8 gap-10 flex flex-col items-center justify-center">
       <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100 bg-[#111827]">
         <h1 className="text-2xl font-bold text-center text-gray-300">Login</h1>
-        <form action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
+        <form
+          onSubmit={handleSubmitForm}
+          action=""
+          className="space-y-6 ng-untouched ng-pristine ng-valid"
+        >
           <div className="space-y-1 text-sm">
             <label htmlFor="email" className="block text-gray-400">
               Email
             </label>
             <input
-              type="text"
-              name="username"
-              id="username"
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              onChange={handleEmail}
               placeholder="Enter Your Email"
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
+              required
             />
           </div>
           <div className="space-y-1 text-sm relative">
@@ -67,8 +105,11 @@ const Login = () => {
               type={PasswordShow ? "password" : "text"}
               name="password"
               id="password"
+              value={password}
+              onChange={handlePassword}
               placeholder="Password"
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
+              required
             />
             {PasswordShow ? (
               <FaEyeSlash
@@ -86,6 +127,9 @@ const Login = () => {
                 Forgot Password?
               </a>
             </div>
+          </div>
+          <div className="text-center">
+            {error && <span className="text-red-600">{error}</span>}
           </div>
           <button className="block w-full p-3 text-center rounded-sm text-gray-900 bg-violet-400 ">
             Sign in

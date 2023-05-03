@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
+import { AuthContext } from "../../Providers/AuthProviders";
+import "react-tooltip/dist/react-tooltip.css";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
+  const handleLogout = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
   return (
     <header className="bg-slate-200">
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 ">
@@ -53,12 +64,43 @@ const Nav = () => {
             </li>
 
             <li>
-              <Link to="/login">
-                <button className="btn btn-outline mr-3">LogIn</button>
-              </Link>
-              <Link to="/register">
-                <button className="btn btn-outline">SignUp</button>
-              </Link>
+              {user ? (
+                <button
+                  onClick={handleLogout}
+                  className="btn btn-outline btn-error"
+                >
+                  Logout
+                </button>
+              ) : (
+                <>
+                  <Link to="/login">
+                    <button className="btn btn-outline mr-3">LogIn</button>
+                  </Link>
+                  <Link to="/register">
+                    <button className="btn btn-outline">SignUp</button>
+                  </Link>
+                </>
+              )}
+            </li>
+
+            <li>
+              {user && (
+                <img
+                  id="img"
+                  alt=""
+                  className="w-12 h-12 border rounded-full dark:bg-gray-500 dark:border-gray-700"
+                  src={user.photoURL}
+                />
+              )}
+              {user && (
+                <ReactTooltip
+                  anchorId="img"
+                  place="top"
+                  variant="info"
+                  className="-mt-2"
+                  content={user.displayName}
+                />
+              )}
             </li>
           </ul>
 
