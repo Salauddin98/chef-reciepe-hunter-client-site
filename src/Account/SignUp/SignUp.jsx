@@ -2,21 +2,60 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProviders";
+import { toast } from "react-hot-toast";
 
 const SignUp = () => {
   const [PasswordShow, setPasswordShow] = useState(true);
-  const { createUser } = useContext(AuthContext);
+  const { createUser, setUser } = useContext(AuthContext);
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [photo, setPhoto] = useState("");
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    createUser(email, password);
+    const form = e.target;
+    console.log(form);
+    if (!/(?=.*[A-Z])/.test(password)) {
+      setPasswordError("Please add at least one uppercase ");
+      return;
+    } else if (!/(?=.*[0-9].*[0-9])/.test(password)) {
+      setPasswordError("Please add at least two number");
+      return;
+    } else if (password.length < 6) {
+      setPasswordError("Password must be at least 6 characters long");
+      return;
+    } else if (password !== confirmPassword) {
+      setPasswordError("Sorry password don't match");
+      return;
+    } else {
+      setPasswordError("");
+    }
+    createUser(email, password)
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        // navigate(from, { replace: true });
+        // setUser(loggedInUser);
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        toast.success("SignUp Successfully");
+      })
+      .catch((error) => {
+        // setError(error.message);
+        // if (passwordError === "Firebase: Error (auth/email-already-in-use).") {
+        //   setPasswordError("Email already in use");
+        // }
+        setPasswordError(error.message);
+      });
   };
   const handleEmail = (e) => {
     const emailInput = e.target.value;
     setEmail(emailInput);
   };
+
   const handlePassword = (e) => {
     const passwordInput = e.target.value;
     setPassword(passwordInput);
@@ -25,17 +64,18 @@ const SignUp = () => {
     const confirmPasswordInput = e.target.value;
     setConfirmPassword(confirmPasswordInput);
   };
+  const handleURL = (e) => {
+    const confirmPasswordInput = e.target.value;
+    setConfirmPassword(confirmPasswordInput);
+  };
+
   return (
     <section className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-10 lg:px-8 gap-10 flex flex-col items-center justify-center">
       <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100 bg-[#111827]">
         <h1 className="text-2xl font-bold text-center text-gray-300">
           Sign Up
         </h1>
-        <form
-          onSubmit={handleSubmitForm}
-          action=""
-          className="space-y-6 ng-untouched ng-pristine ng-valid"
-        >
+        <form onSubmit={handleSubmitForm} action="" className="space-y-6 ">
           <div className="space-y-1 text-sm">
             <label htmlFor="email" className="block text-gray-400">
               Email
@@ -62,9 +102,10 @@ const SignUp = () => {
               value={password}
               onChange={handlePassword}
               placeholder="Password"
-              className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
+              className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400 mb-2"
               required
             />
+
             {PasswordShow ? (
               <FaEyeSlash
                 className="absolute right-3 bottom-0 top-9 cursor-pointer"
@@ -111,10 +152,16 @@ const SignUp = () => {
               type="text"
               name="text"
               id="text"
+              onChange={handleURL}
               placeholder="Enter Your Email"
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
               required
             />
+          </div>
+          <div className="mt-6 text-center">
+            {passwordError && (
+              <span className="text-red-600">{passwordError}</span>
+            )}
           </div>
           <button className="block w-full p-3 text-center rounded-sm text-gray-900 bg-violet-400 ">
             Sign up

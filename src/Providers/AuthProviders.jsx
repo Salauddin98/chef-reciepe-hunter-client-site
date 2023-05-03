@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createContext } from "react";
 export const AuthContext = createContext(null);
 import {
@@ -28,6 +28,16 @@ const AuthProviders = ({ children }) => {
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.log("On State Change", currentUser);
+      setUser(currentUser);
+      // setLoading(false);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   const authInfo = { user, setUser, googleSignIn, githubSingIn, createUser };
   return (
