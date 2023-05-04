@@ -16,7 +16,7 @@ const LatestRecipesDetails = ({ menu, picture, name }) => {
   const { recipeName, ingredients, cookingMethod, ratings, img } = menu;
   return (
     <>
-      <div className="card card-compact w-96 bg-base-100 shadow-xl">
+      <div className="card card-compact w-full bg-base-100 shadow-xl">
         <LazyLoad height={200}>
           <figure>
             <img src={img} alt="Foods" />

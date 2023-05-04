@@ -147,8 +147,8 @@ const Nav = () => {
                             <path d="M18.266 26.068l7.839-7.854 4.469 4.479c1.859 1.859 1.859 4.875 0 6.734l-1.104 1.104c-1.859 1.865-4.875 1.865-6.734 0zM30.563 2.531l-1.109-1.104c-1.859-1.859-4.875-1.859-6.734 0l-6.719 6.734-6.734-6.734c-1.859-1.859-4.875-1.859-6.734 0l-1.104 1.104c-1.859 1.859-1.859 4.875 0 6.734l6.734 6.734-6.734 6.734c-1.859 1.859-1.859 4.875 0 6.734l1.104 1.104c1.859 1.859 4.875 1.859 6.734 0l21.307-21.307c1.859-1.859 1.859-4.875 0-6.734z"></path>
                           </svg>
                         </div>
-                        <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                          HG
+                        <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase title-text">
+                          HEROCHEF
                         </span>
                       </Link>
                     </div>
@@ -171,25 +171,71 @@ const Nav = () => {
                   <nav>
                     <ul className="space-y-4">
                       <li>
-                        <Link
-                          to="/shop"
-                          aria-label="Shop"
-                          title="Shop"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        <NavLink
+                          to="/"
+                          aria-label="Home"
+                          title="Home"
+                          className={({ isActive }) =>
+                            isActive ? "active" : "default"
+                          }
                         >
-                          Shop
-                        </Link>
+                          Home
+                        </NavLink>
                       </li>
 
                       <li>
-                        <Link
-                          to="/about"
-                          aria-label="About Us"
-                          title="About Us"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        <NavLink
+                          to="/blog"
+                          aria-label="About"
+                          title="About"
+                          className={({ isActive }) =>
+                            isActive ? "active" : "default"
+                          }
                         >
-                          About Us
-                        </Link>
+                          Blog
+                        </NavLink>
+                      </li>
+                      <li>
+                        {user && (
+                          <img
+                            id="img"
+                            alt=""
+                            className="w-12 h-12 border rounded-full dark:bg-gray-500 dark:border-gray-700"
+                            src={user.photoURL}
+                          />
+                        )}
+                        {user && (
+                          <ReactTooltip
+                            anchorId="img"
+                            place="top"
+                            variant="info"
+                            className="-mt-2"
+                            content={user.displayName}
+                          />
+                        )}
+                      </li>
+                      <li>
+                        {user ? (
+                          <button
+                            onClick={handleLogout}
+                            className="btn btn-outline btn-error"
+                          >
+                            Logout
+                          </button>
+                        ) : (
+                          <>
+                            <Link to="/login">
+                              <button className="btn btn-outline mr-3">
+                                LogIn
+                              </button>
+                            </Link>
+                            <Link to="/register">
+                              <button className="btn btn-outline">
+                                SignUp
+                              </button>
+                            </Link>
+                          </>
+                        )}
                       </li>
                     </ul>
                   </nav>
