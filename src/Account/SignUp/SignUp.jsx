@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProviders";
@@ -15,6 +15,9 @@ const SignUp = () => {
   const [photo, setPhoto] = useState("");
   const [name, setName] = useState("");
   const navigation = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const handleSubmitForm = (e) => {
     e.preventDefault();
     const form = e.target;

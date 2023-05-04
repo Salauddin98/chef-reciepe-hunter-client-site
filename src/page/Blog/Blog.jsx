@@ -3,8 +3,14 @@ import ReactDOM from "react-dom";
 import Pdf from "react-to-pdf";
 const ref = React.createRef();
 import image from "../../image/faq.png";
+import { useNavigation } from "react-router-dom";
+import Loading from "../../Loading/Loading";
 
 const Blog = () => {
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
   return (
     <section class="container mx-auto px-10 mt-10 md:mt-32 lg:mt-16 mb-8">
       <div className="flex flex-col md:flex-row gap-10 justify-between items-center mt">
@@ -316,6 +322,5 @@ const Blog = () => {
     </section>
   );
 };
-const rootElement = document.getElementById("root");
-ReactDOM.render(<Blog />, rootElement);
+
 export default Blog;

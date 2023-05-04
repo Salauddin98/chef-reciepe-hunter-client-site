@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import food1 from "../../../image/food1.jpg";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import Chef from "../Chef/Chef";
 import RecipeCategory from "../RecipeCategory/RecipeCategory";
 import LatestRecipe from "../LatestRecipe/LatestRecipe";
+import { useEffect } from "react";
+import Loading from "../../../Loading/Loading";
 
 const Home = () => {
   const chefData = useLoaderData();
   // console.log(chefData);
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
   const [showAll, setShowAll] = useState(false);
+
   return (
     <>
       <section className=" bg-[url('image/team.jpg')] bg-no-repeat bg-center bg-cover bg-opacity-10">

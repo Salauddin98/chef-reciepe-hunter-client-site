@@ -133,7 +133,7 @@ const Nav = () => {
                     <div>
                       <Link
                         to="/"
-                        aria-label="HeroGadget"
+                        aria-label="HeroChef"
                         title="HeroGadget"
                         className="inline-flex items-center"
                       >

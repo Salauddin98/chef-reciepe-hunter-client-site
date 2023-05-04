@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigation } from "react-router-dom";
 import Loading from "../../../Loading/Loading";
+import LazyLoad from "react-lazyload";
 
 const Chef = ({ chef }) => {
   const { id, name, picture, likes, experience, recipes } = chef;
@@ -10,9 +11,16 @@ const Chef = ({ chef }) => {
   }
   return (
     <div className="card card-compact w-96 bg-base-100 shadow-xl">
-      <figure>
+      <LazyLoad height={200}>
+        {" "}
+        <figure>
+          <img src={picture} alt="Chef" />
+        </figure>
+      </LazyLoad>
+      {/* <figure>
         <img src={picture} alt="Chef" />
-      </figure>
+      </figure> */}
+
       <div className="card-body">
         <h2 className="card-title text-2xl font-bold">{name}</h2>
         <p className="text-base text-slate-500 font-medium">

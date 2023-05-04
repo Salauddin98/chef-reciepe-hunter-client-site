@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLoaderData, useNavigation } from "react-router-dom";
 import Recipes from "../Recipes/Recipes";
 import Loading from "../../Loading/Loading";
+import { useEffect } from "react";
 
 const ChefDetails = () => {
   const chefDetails = useLoaderData();
@@ -11,6 +12,9 @@ const ChefDetails = () => {
   if (navigation.state === "loading") {
     return <Loading></Loading>;
   }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // console.log(recipes);
   return (

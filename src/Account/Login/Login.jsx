@@ -1,8 +1,14 @@
-import React, { useContext, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useNavigation,
+} from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { toast } from "react-hot-toast";
+import Loading from "../../Loading/Loading";
 
 const Login = () => {
   const [PasswordShow, setPasswordShow] = useState(true);
@@ -15,6 +21,13 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
 
   const handleSubmitForm = (e) => {
     e.preventDefault();

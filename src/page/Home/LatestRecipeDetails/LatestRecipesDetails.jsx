@@ -10,15 +10,19 @@ import {
   FaBookmark,
 } from "react-icons/fa";
 import { toast } from "react-hot-toast";
+import LazyLoad from "react-lazyload";
 
 const LatestRecipesDetails = ({ menu, picture, name }) => {
   const { recipeName, ingredients, cookingMethod, ratings, img } = menu;
   return (
     <>
       <div className="card card-compact w-96 bg-base-100 shadow-xl">
-        <figure>
-          <img src={img} alt="Foods" />
-        </figure>
+        <LazyLoad height={200}>
+          <figure>
+            <img src={img} alt="Foods" />
+          </figure>
+        </LazyLoad>
+
         <div className="card-body">
           <h2 className="card-title text-2xl title-text">{recipeName}</h2>
           <div className="space-x-2 text-lg">

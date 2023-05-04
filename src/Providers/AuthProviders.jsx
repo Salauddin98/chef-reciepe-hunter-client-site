@@ -18,21 +18,27 @@ import { GoogleAuthProvider } from "firebase/auth";
 
 const AuthProviders = ({ children }) => {
   const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const googleSignIn = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
   const githubSingIn = () => {
+    setLoading(true);
     return signInWithPopup(auth, githubProvider);
   };
   const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const loginUser = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   const logOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
   const GetProfile = (u, n, p) => {
@@ -46,7 +52,7 @@ const AuthProviders = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log("On State Change", currentUser);
       setUser(currentUser);
-      // setLoading(false);
+      setLoading(false);
     });
     return () => {
       unsubscribe();
@@ -62,6 +68,7 @@ const AuthProviders = ({ children }) => {
     loginUser,
     logOut,
     GetProfile,
+    loading,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
