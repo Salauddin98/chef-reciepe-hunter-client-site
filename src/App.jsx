@@ -1,9 +1,14 @@
 import React from "react";
 import Nav from "./share/Navbar/Nav";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigation } from "react-router-dom";
 import Footer from "./share/Footer/Footer";
+import Loading from "./Loading/Loading";
 
 const App = () => {
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
   return (
     <>
       <Nav></Nav>

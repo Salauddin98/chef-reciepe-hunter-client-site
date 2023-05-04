@@ -2,8 +2,14 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import React from "react";
 import ReactPDF from "../../ReactPdf/ReactPDF";
 import image from "../../image/faq.png";
+import Loading from "../../Loading/Loading";
+import { useNavigation } from "react-router-dom";
 
 const Blog = () => {
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
   return (
     <section className="container mx-auto px-10 mt-10 md:mt-32 lg:mt-16 mb-8">
       <div className="flex flex-col md:flex-row gap-10 justify-between items-center mt">

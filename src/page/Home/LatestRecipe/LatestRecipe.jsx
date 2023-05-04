@@ -4,7 +4,7 @@ import LatestRecipesDetails from "../LatestRecipeDetails/LatestRecipesDetails";
 
 const LatestRecipe = ({ chef }) => {
   const { id, name, picture, likes, experience, recipes, description } = chef;
-  console.log(chef);
+  // console.log(chef);
   return (
     <>
       {recipes.map((menu, index) => (
