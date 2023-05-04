@@ -24,7 +24,7 @@ const Home = () => {
             <div id="slide1" className="carousel-item relative w-full">
               <div className="w-full h-[400px] bg-[url('image/burger.jpg')] bg-no-repeat bg-center bg-cover flex flex-col items-center justify-center text-center rounded-md bg-opacity-80">
                 <div className="bg-black px-6 py-4 bg-opacity-60 text-gray-300 absolute inset-0 transition duration-700 rounded-md flex flex-col justify-center items-center">
-                  <h1 className="text-white text-base md:text-4xl lg:text-6xl   font-bold">
+                  <h1 className="text-white text-2xl md:text-4xl lg:text-6xl   font-bold">
                     Cheese Burger
                   </h1>
                   <p className="text-white font-bold mt-2 text-lg">
@@ -45,7 +45,7 @@ const Home = () => {
             <div id="slide2" className="carousel-item relative w-full">
               <div className="w-full h-full bg-[url('image/food2.jpg')] bg-no-repeat bg-center bg-cover flex flex-col items-center justify-center text-center rounded-md bg-opacity-80">
                 <div className="bg-black px-6 py-4 bg-opacity-60 text-gray-300 absolute inset-0 transition duration-700 rounded-md flex flex-col justify-center items-center">
-                  <h1 className="text-white text-3xl md:text-4xl lg:text-6xl  font-bold">
+                  <h1 className="text-white text-2xl md:text-4xl lg:text-6xl  font-bold">
                     Chicken Tikka Masala
                   </h1>
                   <p className="text-white font-bold mt-2 text-lg">
@@ -66,7 +66,7 @@ const Home = () => {
             <div id="slide3" className="carousel-item relative w-full">
               <div className="w-full h-[400px] bg-[url('image/food3.jpg')] bg-no-repeat bg-center bg-cover flex flex-col items-center justify-center text-center rounded-md bg-opacity-80">
                 <div className="bg-black px-6 py-4 bg-opacity-60 text-gray-300 absolute inset-0 transition duration-700 rounded-md flex flex-col justify-center items-center">
-                  <h1 className="text-white text-3xl md:text-4xl lg:text-6xl   font-bold">
+                  <h1 className="text-white text-2xl md:text-4xl lg:text-6xl   font-bold">
                     Baked Chicken Breast
                   </h1>
                   <p className="text-white font-bold mt-2 text-lg">
