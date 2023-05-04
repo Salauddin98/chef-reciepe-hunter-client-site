@@ -24,7 +24,7 @@ const Home = () => {
             <div id="slide1" className="carousel-item relative w-full">
               <div className="w-full h-[400px] bg-[url('image/burger.jpg')] bg-no-repeat bg-center bg-cover flex flex-col items-center justify-center text-center rounded-md bg-opacity-80">
                 <div className="bg-black px-6 py-4 bg-opacity-60 text-gray-300 absolute inset-0 transition duration-700 rounded-md flex flex-col justify-center items-center">
-                  <h1 className="text-white text-6xl font-bold">
+                  <h1 className="text-white text-base md:text-4xl lg:text-6xl   font-bold">
                     Cheese Burger
                   </h1>
                   <p className="text-white font-bold mt-2 text-lg">
@@ -45,7 +45,7 @@ const Home = () => {
             <div id="slide2" className="carousel-item relative w-full">
               <div className="w-full h-full bg-[url('image/food2.jpg')] bg-no-repeat bg-center bg-cover flex flex-col items-center justify-center text-center rounded-md bg-opacity-80">
                 <div className="bg-black px-6 py-4 bg-opacity-60 text-gray-300 absolute inset-0 transition duration-700 rounded-md flex flex-col justify-center items-center">
-                  <h1 className="text-white text-6xl font-bold">
+                  <h1 className="text-white text-3xl md:text-4xl lg:text-6xl  font-bold">
                     Chicken Tikka Masala
                   </h1>
                   <p className="text-white font-bold mt-2 text-lg">
@@ -66,7 +66,7 @@ const Home = () => {
             <div id="slide3" className="carousel-item relative w-full">
               <div className="w-full h-[400px] bg-[url('image/food3.jpg')] bg-no-repeat bg-center bg-cover flex flex-col items-center justify-center text-center rounded-md bg-opacity-80">
                 <div className="bg-black px-6 py-4 bg-opacity-60 text-gray-300 absolute inset-0 transition duration-700 rounded-md flex flex-col justify-center items-center">
-                  <h1 className="text-white text-6xl font-bold">
+                  <h1 className="text-white text-3xl md:text-4xl lg:text-6xl   font-bold">
                     Baked Chicken Breast
                   </h1>
                   <p className="text-white font-bold mt-2 text-lg">
@@ -89,7 +89,7 @@ const Home = () => {
               <div className="w-full h-[400px] bg-[url('image/food4.jpg')] bg-no-repeat bg-center bg-cover flex flex-col items-center justify-center text-center rounded-md bg-opacity-80">
                 <div className="w-full h-[400px] bg-[url('image/food3.jpg')] bg-no-repeat bg-center bg-cover flex flex-col items-center justify-center text-center rounded-md bg-opacity-80">
                   <div className="bg-black px-6 py-4 bg-opacity-60 text-gray-300 absolute inset-0 transition duration-700 rounded-md flex flex-col justify-center items-center">
-                    <h1 className="text-white text-6xl font-bold">
+                    <h1 className="text-white text-2xl md:text-4xl lg:text-6xl   font-bold">
                       Baked Chicken Breast
                     </h1>
                     <p className="text-white font-bold mt-2 text-lg">
@@ -112,14 +112,14 @@ const Home = () => {
         </div>
       </section>
       <section className="mt-10">
-        <h1 className="text-center text-4xl font-bold py-8">
+        <h1 className="text-center text-2xl md:text-3xl lg:text-4xl  font-bold py-8">
           Recipe Categories
           <hr className="w-24 mt-2 border-[3px] mx-auto border-orange-500" />
         </h1>
         <RecipeCategory></RecipeCategory>
       </section>
       <section className="bg-[url('image/pattern-home.jpg')] bg-no-repeat mt-10">
-        <h1 className="text-center text-4xl font-bold py-8">
+        <h1 className="text-center text-2xl md:text-3xl lg:text-4xl font-bold py-8">
           OUR CHEF
           <hr className="w-24 mt-2 border-[3px] mx-auto border-orange-500" />
         </h1>
@@ -131,7 +131,7 @@ const Home = () => {
       </section>
 
       <section className="bg-[url('image/pattern-home.jpg')] bg-no-repeat mt-10">
-        <h1 className="text-center text-4xl font-bold py-8">
+        <h1 className="text-center text-2xl md:text-3xl lg:text-4xl font-bold py-8">
           OUR LATEST RECIPES
           <hr className="w-24 mt-2 border-[3px] mx-auto border-orange-500" />
         </h1>

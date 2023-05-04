@@ -19,7 +19,7 @@ const ChefDetails = () => {
   // console.log(recipes);
   return (
     <section className="bg-[url('image/pattern-home.jpg')] bg-no-repeat">
-      <h1 className="text-center text-4xl font-bold py-8">
+      <h1 className="text-center text-2xl md:text-3xl lg:text-4xl  font-bold py-8">
         OUR CHEF DETAILS
         <hr className="w-24 mt-2 border-[3px] mx-auto border-orange-500" />
       </h1>
