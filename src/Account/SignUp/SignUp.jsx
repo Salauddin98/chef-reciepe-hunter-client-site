@@ -107,7 +107,7 @@ const SignUp = () => {
               onChange={handleName}
               placeholder="Enter Your Email"
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
-              // required
+              required
             />
           </div>
           <div className="space-y-1 text-sm">
@@ -189,7 +189,7 @@ const SignUp = () => {
               onChange={handleURL}
               placeholder="Enter Your Email"
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
-              // required
+              required
             />
           </div>
           <div className="mt-6 text-center">
