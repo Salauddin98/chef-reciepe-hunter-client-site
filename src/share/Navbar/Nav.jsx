@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigation } from "react-router-dom";
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import { AuthContext } from "../../Providers/AuthProviders";
 import "react-tooltip/dist/react-tooltip.css";
@@ -8,7 +8,7 @@ import { Tooltip as ReactTooltip } from "react-tooltip";
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
   const handleLogout = () => {
     logOut()
       .then(() => {})
@@ -16,6 +16,7 @@ const Nav = () => {
         console.log(error.message);
       });
   };
+
   return (
     <header className="bg-slate-200">
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 ">

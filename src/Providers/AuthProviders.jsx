@@ -23,22 +23,22 @@ const AuthProviders = ({ children }) => {
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const googleSignIn = () => {
-    setLoading(true);
+    // setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
   const githubSingIn = () => {
-    setLoading(true);
+    // setLoading(true);
     return signInWithPopup(auth, githubProvider);
   };
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const userLogin = (email, password) => {
-    setLoading(true);
+    // setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   const logOut = () => {
-    setLoading(true);
+    // setLoading(true);
     return signOut(auth);
   };
   const GetProfile = (u, n, p) => {
