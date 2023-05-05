@@ -13,10 +13,11 @@ import {
   updateProfile,
 } from "firebase/auth";
 import app from "../Firebase/firebase";
-const auth = getAuth(app);
+
 import { GoogleAuthProvider } from "firebase/auth";
 
 const AuthProviders = ({ children }) => {
+  const auth = getAuth(app);
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
@@ -30,10 +31,9 @@ const AuthProviders = ({ children }) => {
     return signInWithPopup(auth, githubProvider);
   };
   const createUser = (email, password) => {
-    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
-  const loginUser = (email, password) => {
+  const userLogin = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
@@ -65,7 +65,7 @@ const AuthProviders = ({ children }) => {
     googleSignIn,
     githubSingIn,
     createUser,
-    loginUser,
+    userLogin,
     logOut,
     GetProfile,
     loading,

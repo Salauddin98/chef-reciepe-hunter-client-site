@@ -3,28 +3,34 @@ import Nav from "./share/Navbar/Nav";
 import { Outlet, useNavigation } from "react-router-dom";
 import Footer from "./share/Footer/Footer";
 import Loading from "./Loading/Loading";
-import { AuthContext } from "./Providers/AuthProviders";
 
 const App = () => {
-  // const navigation = useNavigation();
-  // if (navigation.state === "loading") {
-  //   return <Loading></Loading>;
-  // }
-  const { loading } = useContext(AuthContext);
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
+
   return (
+    // <>
+    //   {loading ? (
+    //     <Loading></Loading>
+    //   ) : (
+    //     <>
+    //       {" "}
+    //       <Nav></Nav>
+    //       <div className="min-h-[calc(100vh-390px)]">
+    //         <Outlet></Outlet>
+    //       </div>
+    //       <Footer></Footer>
+    //     </>
+    //   )}
+    // </>
     <>
-      {loading ? (
-        <Loading></Loading>
-      ) : (
-        <>
-          {" "}
-          <Nav></Nav>
-          <div className="min-h-[calc(100vh-390px)]">
-            <Outlet></Outlet>
-          </div>
-          <Footer></Footer>
-        </>
-      )}
+      <Nav></Nav>
+      <div className="min-h-[calc(100vh-390px)]">
+        <Outlet></Outlet>
+      </div>
+      <Footer></Footer>
     </>
   );
 };

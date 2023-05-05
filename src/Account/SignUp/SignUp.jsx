@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate, useNavigation } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { toast } from "react-hot-toast";
+import Loading from "../../Loading/Loading";
 
 const SignUp = () => {
   const [PasswordShow, setPasswordShow] = useState(true);
-  const { createUser, setUser, GetProfile } = useContext(AuthContext);
+  const { createUser, setUser, GetProfile, logOut } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
@@ -14,10 +15,14 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [photo, setPhoto] = useState("");
   const [name, setName] = useState("");
-  const navigation = useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
   const handleSubmitForm = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -40,15 +45,14 @@ const SignUp = () => {
     createUser(email, password)
       .then((result) => {
         const loggedInUser = result.user;
-        console.log(loggedInUser);
-        // navigate(from, { replace: true });
+        // console.log(loggedInUser);
         // setUser(loggedInUser);
         setEmail("");
         setPassword("");
         setConfirmPassword("");
         setPhoto("");
         form.reset();
-        navigation("/login");
+        navigate("/login");
         toast.success("SignUp Successfully");
         GetProfile(result.user, name, photo)
           .then(() => {

@@ -12,7 +12,7 @@ import Loading from "../../Loading/Loading";
 
 const Login = () => {
   const [PasswordShow, setPasswordShow] = useState(true);
-  const { googleSignIn, setUser, githubSingIn, loginUser } =
+  const { googleSignIn, setUser, githubSingIn, userLogin } =
     useContext(AuthContext);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -31,8 +31,7 @@ const Login = () => {
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-
-    loginUser(email, password)
+    userLogin(email, password)
       .then((result) => {
         const loggedInfo = result.user;
         // console.log(loggedInfo)
@@ -45,6 +44,7 @@ const Login = () => {
       })
       .catch((error) => {
         setError(error.message);
+        console.log(error.message);
       });
   };
   const handleEmail = (e) => {
@@ -91,7 +91,7 @@ const Login = () => {
       <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100 bg-[#111827]">
         <h1 className="text-2xl font-bold text-center text-gray-300">Login</h1>
         <form
-          onSubmit={handleSubmitForm}
+          // onSubmit={handleSubmitForm}
           action=""
           className="space-y-6 ng-untouched ng-pristine ng-valid"
         >
@@ -144,7 +144,10 @@ const Login = () => {
           <div className="text-center">
             {error && <span className="text-red-600">{error}</span>}
           </div>
-          <button className="block w-full p-3 text-center rounded-sm text-gray-900 bg-violet-400 ">
+          <button
+            onClick={handleSubmitForm}
+            className="block w-full p-3 text-center rounded-sm text-gray-900 bg-violet-400 "
+          >
             Sign in
           </button>
         </form>
